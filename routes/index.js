@@ -10,7 +10,7 @@ router.use(userRouter);
 router.use(cardRouter);
 router.use('*', (req, res) => {
   res.status(404);
-  res.send('Страница не найдена');
+  res.send({ message: 'Страница не найдена' });
 });
 
 module.exports = router;
