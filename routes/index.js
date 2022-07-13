@@ -8,5 +8,9 @@ router.get('/', (req, res) => {
 });
 router.use(userRouter);
 router.use(cardRouter);
+router.use('*', (req, res) => {
+  res.status(404);
+  res.send('Страница не найдена');
+});
 
 module.exports = router;

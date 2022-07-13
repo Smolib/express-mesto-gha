@@ -20,7 +20,4 @@ app.use((req, res, next) => {
 });
 app.use(router);
 
-app.listen(3000, () => {
-  // eslint-disable-next-line no-console
-  console.log('я живой');
-});
+app.listen(3000, () => {});
