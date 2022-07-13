@@ -11,7 +11,7 @@ const createCard = (req, res) => {
   Card.create({ name, link, owner: req.user._id })
     .then((card) => res.status(201).send(card))
     .catch((err) => {
-      if (err.name === 'ValidatorError') {
+      if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Некорректные данные для создания карточки' });
         return;
       }
@@ -45,7 +45,7 @@ const putLikeCard = (req, res) => {
       res.status(200).send(card);
     })
     .catch((err) => {
-      if (err.name === 'ValidatorError') {
+      if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Некорректные данные для постановки лайка' });
         return;
       }
@@ -67,7 +67,7 @@ const deleteLikeCard = (req, res) => {
       res.status(200).send(card);
     })
     .catch((err) => {
-      if (err.name === 'ValidatorError') {
+      if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Некорректные данные для снятия лайка' });
         return;
       }

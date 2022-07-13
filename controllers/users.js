@@ -22,11 +22,11 @@ const createUser = (req, res) => {
   User.create({ ...req.body })
     .then((user) => res.status(201).send(user))
     .catch((err) => {
-      if (err.name === 'ValidatorError') {
+      if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Некорректные данные для создания пользователя' });
         return;
       }
-      res.status(500).send({ message: 'На сервере произошла ошибка' });
+      res.status(500).send(err);
     });
 };
 
@@ -41,7 +41,7 @@ const updateUser = (req, res) => {
       res.status(200).send(user);
     })
     .catch((err) => {
-      if (err.name === 'ValidatorError') {
+      if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Некорректные данные для обновления данных пользователя' });
         return;
       }
@@ -60,7 +60,7 @@ const updateAvatar = (req, res) => {
       res.status(200).send(user);
     })
     .catch((err) => {
-      if (err.name === 'ValidatorError') {
+      if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Некорректные данные для обновления данных пользователя' });
         return;
       }
