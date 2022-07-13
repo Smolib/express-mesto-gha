@@ -6,4 +6,4 @@ const statuses = {
   internalServerError: 500,
 };
 
-export default statuses;
+module.exports = statuses;
