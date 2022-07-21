@@ -1,6 +1,6 @@
 const Card = require('../models/card');
 const {
-  ok, created, badRequest, notFound, internalServerError,
+  ok, created, badRequest, forbidden, notFound, internalServerError,
 } = require('../constants/statuses');
 
 const getCards = (req, res) => {
@@ -27,6 +27,10 @@ const deleteCard = (req, res) => {
     .then((card) => {
       if (!card) {
         res.status(notFound).send({ message: 'Карточка не найдена' });
+        return;
+      }
+      if (card.owner !== req.user.id) {
+        res.status(forbidden).send({ message: 'Нельзя удалять чужие карточки' });
         return;
       }
       res.status(ok).send(card);
