@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const { errors } = require('celebrate');
 const router = require('./routes');
 
 const app = express();
@@ -13,7 +14,7 @@ mongoose.connect('mongodb://localhost:27017/mesto', {
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(router);
-
+app.use(errors());
 app.use((err, req, res) => {
   res.status(500).send({ message: 'На сервере произошла ошибка' });
 });
