@@ -31,7 +31,7 @@ const getUser = (req, res, next) => {
 };
 
 const getUserMe = (req, res, next) => {
-  User.findById(req.user.id).then((user) => res.status(ok).send(user))
+  User.findById(req.user._id).then((user) => res.status(ok).send(user))
     .catch(next);
 };
 
