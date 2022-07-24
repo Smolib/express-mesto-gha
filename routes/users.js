@@ -9,7 +9,8 @@ router.get(
   getUsers,
 );
 router.get('/users/me', getUserMe);
-router.get('/users/:id',
+router.get(
+  '/users/:id',
   celebrate({ params: Joi.object().keys({ id: Joi.string().min(24).max(24) }) }),
   getUser,
 );
