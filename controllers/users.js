@@ -17,12 +17,11 @@ const getUsers = (req, res, next) => {
 
 const getUser = (req, res, next) => {
   const { id } = req.params;
-  User.findById(id).then((user) => {
-    if (!user) {
-      throw new NotFoundError('Пользователь не найден');
-    }
-    res.status(ok).send(user);
-  })
+  User.findById(id)
+    .onFail(new NotFoundError('Пользователь не найден'))
+    .then((user) => {
+      res.status(ok).send(user);
+    })
     .catch((err) => {
       if (err.name === 'CastError') {
         next(new BadRequestError('Некорректный id пользователя'));
@@ -59,10 +58,8 @@ const createUser = (req, res, next) => {
 const updateUser = (req, res, next) => {
   const { name, about } = req.body;
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
+    .onFail(new NotFoundError('Пользователь не найден'))
     .then((user) => {
-      if (!user) {
-        throw new NotFoundError('Пользователь не найден');
-      }
       res.status(ok).send(user);
     })
     .catch((err) => {
