@@ -18,7 +18,7 @@ const getUsers = (req, res, next) => {
 const getUser = (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
-    .onFail(new NotFoundError('Пользователь не найден'))
+    .orFail(new NotFoundError('Пользователь не найден'))
     .then((user) => {
       res.status(ok).send(user);
     })
@@ -58,7 +58,7 @@ const createUser = (req, res, next) => {
 const updateUser = (req, res, next) => {
   const { name, about } = req.body;
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
-    .onFail(new NotFoundError('Пользователь не найден'))
+    .orFail(new NotFoundError('Пользователь не найден'))
     .then((user) => {
       res.status(ok).send(user);
     })

@@ -25,7 +25,7 @@ const createCard = (req, res, next) => {
 
 const deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)
-    .onFail(new NotFoundError('Карточка не найдена'))
+    .orFail(new NotFoundError('Карточка не найдена'))
     .then((card) => {
       if (`${card.owner}` !== req.user._id) {
         throw new ForbiddenError('Нельзя удалять чужие карточки');
@@ -48,7 +48,7 @@ const putLikeCard = (req, res, next) => {
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
-    .onFail(new NotFoundError('Карточка не найдена'))
+    .orFail(new NotFoundError('Карточка не найдена'))
     .then((card) => {
       res.status(ok).send(card);
     })
@@ -65,7 +65,7 @@ const deleteLikeCard = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true },
   )
-    .onFail(new NotFoundError('Карточка не найдена'))
+    .orFail(new NotFoundError('Карточка не найдена'))
     .then((card) => {
       res.status(ok).send(card);
     })
