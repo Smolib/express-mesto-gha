@@ -1,28 +1,16 @@
-[![Tests](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-13-sprint.yml) [![Tests](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-14-sprint.yml)
-# Проект Mesto фронтенд + бэкенд
+# Проект Mesto
 
+Учебный проект в Яндекс.Практикуме на Express.<br>
+Является серверной частью проекта Mesto.
+Проект написан с использованием технологий:
+* Node
+* Express
+* Mongo
+* Postman
 
+Функциональность:
 
-## Настройка бейджей статуса тестов
-Перед началом работы над проектом рекомендуется исправить бейджи, отражающие статус прохождения тестов.
-Для этого замените разметку бейджей на следующий фрагмент, подставив вместо `${имя_пользователя}` и `${имя_репозитория}` соответствующие значения.
-
-```
-[![Tests for sprint 13](https://github.com/Smolib/https://github.com/Smolib/express-mesto-gha/actions/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/Smolib/https://github.com/Smolib/express-mesto-gha/actions/workflows/tests-13-sprint.yml) 
-
-[![Tests for sprint 14](https://github.com/Smolib/https://github.com/Smolib/express-mesto-gha/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/Smolib/https://github.com/Smolib/express-mesto-gha/actions/workflows/tests-14-sprint.yml)
-```
-
-
-## Директории
-
-`/routes` — папка с файлами роутера  
-`/controllers` — папка с файлами контроллеров пользователя и карточки   
-`/models` — папка с файлами описания схем пользователя и карточки  
-  
-Остальные директории вспомогательные, создаются при необходимости разработчиком
-
-## Запуск проекта
-
-`npm run start` — запускает сервер   
-`npm run dev` — запускает сервер с hot-reload
+* Работа с нереляционной баззов данных MongoDB
+* Серверная регистрация и авторизация пользователей
+* Добавление новых карточек и их возврат
+* Обработка лайков от пользователей
